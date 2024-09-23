@@ -67,9 +67,11 @@ const useAppContext = () => {
 }
 
 function App() {
+  const basename = window.location.hostname === "localhost" ? "" : "/fakeStore"; //處理github page部署問題
+
   return (  
     <AppProvider>
-    <Router>
+    <Router basename={basename}>
       <Routes>
         <Route path="/" element={<Store />} />
         <Route path="/login" element={<Login />} />
