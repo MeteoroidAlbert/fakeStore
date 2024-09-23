@@ -6,7 +6,7 @@ import Purchase from "./components/Purchase";
 
 import { useState, useEffect, createContext, useContext } from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Routes
 } from "react-router-dom";
