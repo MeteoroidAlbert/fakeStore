@@ -1,4 +1,4 @@
-import { Box, Button, Center, FormControl, FormLabel, Heading, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Center, FormControl, FormLabel, Heading, Input, Spinner, Text } from "@chakra-ui/react";
 import NavBar from "./NavBar";
 import { useState } from "react";
 import axios from "axios";
@@ -7,12 +7,13 @@ import { nav } from "framer-motion/client";
 import { useAppContext } from "../App";
 
 function Register() {
-    const {username, setUsername, password, setPassword, error, setError} = useAppContext();
+    const {username, setUsername, password, setPassword, error, setError, loading, setLoading} = useAppContext();
 
     const navigate = useNavigate();
 
 
     const handleRegister = () => {
+        setLoading(true);
         setError("");
         
         axios({
@@ -25,12 +26,14 @@ function Register() {
             }
         }).then( res => {
             //console.log(res.data?.message);
+            setLoading(false);
             alert("User registered successfully");
             setUsername("");
             setPassword("");
             navigate("/login");
         }).catch( err => {
             //console.log(err.response);
+            setLoading(false);
             setError(err.response.data?.message);
             setUsername("");
             setPassword("");
@@ -69,6 +72,11 @@ function Register() {
                         <Center>
                             <Text mt={4} color="red">{error}</Text>
                         </Center>}
+                    {loading &&
+                    <Center>
+                        <Spinner mt={2}/>
+                    </Center>
+                    }
                     <Center>
                         <Button
                             w="50%"
