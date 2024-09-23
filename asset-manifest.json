@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/MeteoroidAlbert/fakeStore/static/css/main.18964cc7.css",
+    "main.js": "/MeteoroidAlbert/fakeStore/static/js/main.bde7f22b.js",
+    "static/js/453.a1983a77.chunk.js": "/MeteoroidAlbert/fakeStore/static/js/453.a1983a77.chunk.js",
+    "index.html": "/MeteoroidAlbert/fakeStore/index.html",
+    "main.18964cc7.css.map": "/MeteoroidAlbert/fakeStore/static/css/main.18964cc7.css.map",
+    "main.bde7f22b.js.map": "/MeteoroidAlbert/fakeStore/static/js/main.bde7f22b.js.map",
+    "453.a1983a77.chunk.js.map": "/MeteoroidAlbert/fakeStore/static/js/453.a1983a77.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18964cc7.css",
+    "static/js/main.bde7f22b.js"
+  ]
+}
