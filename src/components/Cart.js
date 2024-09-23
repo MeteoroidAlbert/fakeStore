@@ -26,7 +26,7 @@ function Cart () {
 
     const handleCardClick = (item) => {
         localStorage.setItem("productData", JSON.stringify({...item}));
-        window.open(`/product/${item.id}`, "_blank");
+        window.open(`#/product/${item.id}`, "_blank");
     }
 
     const handleQuantity = (id, delta) => {

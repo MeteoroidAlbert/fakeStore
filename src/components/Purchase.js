@@ -92,8 +92,11 @@ function Purchase () {
             !purchaseItems.some(purchaseItem => purchaseItem.title === cartItem.title)
         );
 
+        console.log(restItems);
+        console.log(cartItems);
+        console.log(purchaseItems);
         setCartItems(restItems);
-
+        localStorage.setItem("storedCartData", JSON.stringify(restItems));
         alert("Checkout Complete!");
         navigate("/");
     }

@@ -14,10 +14,10 @@ import {useAppContext} from '../App';
 const StoreItem = ({id, title, price, image, category, description }) => {
     const { token, addToCart, cartItems } = useAppContext();
     const navigate = useNavigate();
-
+    
     const handleCardClick = () => {
         localStorage.setItem("productData", JSON.stringify({id, title, price, image, category, description, quantity: 1}));
-        window.open(`/product/${id}`, "_blank");
+        window.open(`#/product/${id}`, "_blank");
     }
     
     const handleCartAdd = (e) => {
@@ -102,7 +102,6 @@ function Store() {
             <NavBar />
             <Box position="relative" backgroundColor="#f5f5f5">               
                 <Cart />              
-                <div>This is the Store component!</div>;
                 <Box p={3} mx="auto">
                     {loading ?
                         (<Center mt={6}>

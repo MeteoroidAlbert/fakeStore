@@ -29,7 +29,7 @@ function Product() {
     // },[state]);
 
     if (!state) {                   //debug: 當直接使用/id網址而非透過商店點擊商品時，state可能並未接收到從Store傳遞的任何資料，因此應該重新導向到home page
-        window.location = "/";
+        window.location = "#/";
     }
 
     const handleCartAdd = (id) => {
