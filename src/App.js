@@ -80,7 +80,7 @@ function App() {
         <Route path="/register" element={<Register />} /> 
         <Route path="/product/:id" element={<Product />}/>   {/* /:id 用以動態捕捉id，其中 ":" + (自定義項目名稱) 表示要動態捕捉某項目，再藉由<Link>完善實際捕捉對象*/}
         <Route path="/purchase" element={<Purchase />}/>
-        <Route>404 page</Route>  
+        <Route path="*" element={<Box>404 Not Found</Box>}></Route>  
       </Routes>
     </Router>
     </AppProvider>
