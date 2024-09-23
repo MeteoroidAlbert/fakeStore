@@ -102,6 +102,7 @@ function Store() {
             <NavBar />
             <Box position="relative" backgroundColor="#f5f5f5">               
                 <Cart />              
+                <div>This is the Store component!</div>;
                 <Box p={3} mx="auto">
                     {loading ?
                         (<Center mt={6}>
