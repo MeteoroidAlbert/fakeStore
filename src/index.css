@@ -5,9 +5,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5 !important;
+}
+
+footer p {
+  margin-top: -10px;
+  text-align: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.productCard:hover {
+  box-shadow: 5px 5px 20px;
+}
+
+.cart:hover {
+  color: #00bfff;
+}
+
+.trashCan:hover {
+  color: red;
+}
+
+
+
