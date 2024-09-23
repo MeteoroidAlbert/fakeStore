@@ -67,38 +67,6 @@ const useAppContext = () => {
 }
 
 function App() {
-  // const [token, setToken] =useState("");                         //處理登入token
-  // const [username, setUsername] = useState("");                  //處理username
-  // const [password, setPassword] = useState("");                  //處理password
-  // const [error, setError] = useState("");                        //處理登入、註冊時，伺服器的報錯回應
-  // const [showing, setShowing] = useState(false);                 //處理購物車顯示
-  // const [cartBtnShow, setCartBtnShow] = useState(true);
-  // const [cartItems, setCartItems] = useState(() => {             //處理購物車內容
-  //   const storedCartData = localStorage.getItem("storedCartData");
-  //   return storedCartData ? JSON.parse(storedCartData) : [];    //debug: 寫成如此是因為，避免後續useEffect()的依賴項為cartItems時，若此useState的initialState是[]會造成cartItem在重新整理頁面後變成空的，那麼原來存儲於localStorage資料會丟失。
-  // });
-  // const [purchaseItems, setPurchaseItems] = useState([]);
-
-
-  // //登入相關
-  // useEffect(() => {
-  //   const storedToken = localStorage.getItem("userToken");
-  //   if (storedToken) {
-  //     setToken(storedToken);
-  //   }
-  // },[])
-
-
-  // //購物車相關
-  // useEffect(() => {
-  //   localStorage.setItem("storedCartData", JSON.stringify(cartItems));
-  //   // console.log('Saving cartItems to localStorage', cartItems);
-  // }, [cartItems]);
-
-  // const addToCart = (item) => {                             //將被點擊的商品存入cartItems Array;
-  //   setCartItems(preItems => [...preItems, item]);
-  // };
-
   return (  
     <AppProvider>
     <Router>
