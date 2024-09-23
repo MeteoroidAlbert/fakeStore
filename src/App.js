@@ -10,6 +10,7 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import { Box } from "@chakra-ui/react";
 
 
 const AppContext = createContext();
@@ -71,6 +72,7 @@ function App() {
 
   return (  
     <AppProvider>
+    <Box>This is App component</Box>
     <Router basename={basename}>
       <Routes>
         <Route path="/" element={<Store />} />
