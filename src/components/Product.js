@@ -21,8 +21,14 @@ function Product() {
 
         setCartBtnShow(true);
         setState(JSON.parse(localStorage.getItem("productData")));
+        
     }, [])
 
+
+    useEffect(() => {
+        localStorage.setItem("storedPurchasedItemData", JSON.stringify([{ ...state }]));
+        
+    },[state])
 
     // useEffect(() => {
     //     console.log(state);
@@ -54,7 +60,7 @@ function Product() {
             navigate("/login");
             return;
         }
-        localStorage.setItem("storedPurchasedItemData", JSON.stringify([{ ...state }]));
+        
         if (cartItems.some(item => item.id === id)) {
             navigate("/purchase");
         }
@@ -62,7 +68,7 @@ function Product() {
             addToCart({ ...state });
             navigate("/purchase");
         }
-        localStorage.removeItem("selectedRadioVal");
+        
     }
 
 

@@ -16,7 +16,7 @@ const StoreItem = ({id, title, price, image, category, description }) => {
     const navigate = useNavigate();
     
     const handleCardClick = () => {
-        localStorage.setItem("productData", JSON.stringify({id, title, price, image, category, description, quantity: 1}));
+        localStorage.setItem("productData", JSON.stringify({id, title, price, image, category, description, quantity: 1, totalPrice: price}));
         window.open(`#/product/${id}`, "_blank");
     }
     

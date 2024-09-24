@@ -23,10 +23,12 @@ function Purchase () {
         setTimeout(() => {
             setLoading(false);
         }, 500);
-
+        
         const storedPurchasedItemData = JSON.parse(localStorage.getItem("storedPurchasedItemData"));
+        
         if (storedPurchasedItemData) {
             setPurchaseItems(storedPurchasedItemData);
+            
         }
 
         const storedRadioValue = localStorage.getItem("selectedRadioVal");
@@ -34,13 +36,16 @@ function Purchase () {
             setSelectedVal(storedRadioValue);
         }
         
-        const sum = purchaseItems.reduce( (acc, item) =>  acc + Number(item.totalPrice), 0).toFixed(2);
-        setTotalPrice(sum);
+        
         setShowing(false);
         setCartBtnShow(false);
-      }, );
+        
+      }, []);
     
-
+    useEffect(() => {
+        const sum = purchaseItems.reduce( (acc, item) =>  acc + Number(item.totalPrice), 0).toFixed(2);
+        setTotalPrice(sum);
+    }, [purchaseItems]);
 
     useEffect(() => {
         const params = new URLSearchParams(location.search); //使用 new URLSearchParams()可以解析URL或特定字串，location.search則是代表當前URL的查詢參數
@@ -97,6 +102,7 @@ function Purchase () {
         console.log(purchaseItems);
         setCartItems(restItems);
         localStorage.setItem("storedCartData", JSON.stringify(restItems));
+        localStorage.removeItem("selectedRadioVal");
         alert("Checkout Complete!");
         navigate("/");
     }
@@ -126,7 +132,7 @@ function Purchase () {
                                         <Heading size="md">x{item.quantity}</Heading>
                                     </GridItem>
                                     <GridItem mx="auto">
-                                        <Heading size="md">{item.totalPrice}</Heading>
+                                        <Heading size="md">${item.totalPrice}</Heading>
                                     </GridItem>
                                 </SimpleGrid>
                             ))

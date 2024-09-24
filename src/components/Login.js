@@ -34,6 +34,7 @@ function Login() {
             setToken(res.data?.token);
             localStorage.setItem("userToken", res.data?.token);
             localStorage.removeItem("storedCartData");
+            localStorage.removeItem("storedPurchasedItemData");
             setCartItems([]);
             alert("Login successfully")
             navigate("/");
