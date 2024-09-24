@@ -154,7 +154,7 @@ function Purchase () {
                     </Box>
                     <Box w={{ base: "90%", md: "70%", xl: "45%" }} mx="auto" my={6} p={2} backgroundColor="white" borderWidth={1} borderRadius={10}>
                         <Heading size="lg" m={2}>Notes</Heading>
-                        <Textarea w="90%" ml={4} mb={2} placeholder="Any requirement want to ask to us..."></Textarea>
+                        <Textarea w="90%" ml={4} mb={2} placeholder="Do you have any requirements?"></Textarea>
                     </Box>
                     <Box w={{ base: "80%", md: "70%", xl: "45%" }} mx="auto" my={6} p={2} textAlign="right">
                         <Button backgroundColor="#ffa500" onClick={handleCheckOut}>Checkout</Button>

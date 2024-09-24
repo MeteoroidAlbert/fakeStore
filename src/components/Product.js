@@ -8,7 +8,7 @@ import { useAppContext } from "../App";
 
 
 function Product() {
-    const {cartItems,  addToCart, setCartBtnShow, loading, setLoading} = useAppContext();
+    const { token, cartItems, addToCart, setCartBtnShow, loading, setLoading } = useAppContext();
 
     const [state, setState] = useState([]);
 
@@ -18,7 +18,7 @@ function Product() {
         setTimeout(() => {
             setLoading(false);
         }, 500);
-        
+
         setCartBtnShow(true);
         setState(JSON.parse(localStorage.getItem("productData")));
     }, [])
@@ -33,23 +33,33 @@ function Product() {
     }
 
     const handleCartAdd = (id) => {
+        if (!token) {
+            navigate("/login");
+            return;
+        }
+
         if (cartItems.find(item => item.id === id)) {
             alert("It's already in the cart!")
         }
-        else{
-            addToCart({...state}); //每個被存入購物車的item可以解構賦值為title, image, price...
+        else {
+            addToCart({ ...state }); //每個被存入購物車的item可以解構賦值為title, image, price...
         }
+
         // console.log(cartItems);
     }
 
 
     const handleBuyNow = (id) => {
-        localStorage.setItem("storedPurchasedItemData", JSON.stringify([{...state}]));
+        if (!token) {
+            navigate("/login");
+            return;
+        }
+        localStorage.setItem("storedPurchasedItemData", JSON.stringify([{ ...state }]));
         if (cartItems.some(item => item.id === id)) {
             navigate("/purchase");
         }
         else {
-            addToCart({...state});
+            addToCart({ ...state });
             navigate("/purchase");
         }
         localStorage.removeItem("selectedRadioVal");
@@ -57,10 +67,10 @@ function Product() {
 
 
     const handleQuantity = (delta) => {
-        
+
         const newQuantity = Math.max(1, state.quantity + delta);
-        setState({...state, quantity: newQuantity, totalPrice: Number(newQuantity * state.price).toFixed(2)});      
-    
+        setState({ ...state, quantity: newQuantity, totalPrice: Number(newQuantity * state.price).toFixed(2) });
+
     }
 
     return (
@@ -73,11 +83,11 @@ function Product() {
                 :
                 <Box position="ralative">
                     <Cart />
-                    <Box w={{ base: "100%", md: "85%" }} mx="auto" p={8} display="flex" alignItems="center">
+                    <Box w={{ base: "100%", md: "90%", lg: "70%", xl: "60%" }} mx="auto" p={{base: 3, md: 4}} display="flex" alignItems="center">
 
                         <Box backgroundColor="white" borderRadius={10} p={2}>
                             <SimpleGrid spacing={6} columns={{ base: 1, md: 5 }}>   {/*{ base: 1, md: 5 }表示colums在斷點為xs、sm時為1，md時為5*/}
-                                <GridItem colSpan={2}>
+                                <GridItem colSpan={2} my="auto">
                                     <Center>
                                         <Image w={48} src={state.image} />
                                     </Center>
@@ -85,25 +95,26 @@ function Product() {
                                 <GridItem colSpan={3}>
                                     <Stack spacing={4}>
                                         <Box>
-                                            <Heading as="h1" size="xl">{state.title}</Heading>
+                                            <Heading as="h1" size={{base: "lg", md: "xl"}}>{state.title}</Heading>
                                             <Tag mt={2}>{state.category}</Tag>
-                                            <Heading as="h2" size="lg" mt={6}>Price: ${state.price}</Heading>
+                                            <Heading as="h2" size={{base: "md", md: "lg"}} mt={6} >Price: ${state.price}</Heading>
                                         </Box>
                                         <Box display="flex">
-                                                    <Button size="xs"><i className="fa fa-minus"
-                                                        onClick={() => handleQuantity(-1)}></i></Button>
-                                                    <Input mx={1} w={8} type="number" size="xs"
-                                                        backgroundColor="white" borderRadius={5} textAlign="center"
-                                                        value={state.quantity} readOnly
-                                                    />
-                                                    <Button size="xs"><i className="fa fa-plus"
-                                                        onClick={() => handleQuantity(+1)}></i></Button>
-                                                </Box>
-                                        <Text mt={4}>{state.description}</Text>
+                                            <Button size="xs"><i className="fa fa-minus"
+                                                onClick={() => handleQuantity(-1)}></i></Button>
+                                            <Input mx={1} w={8} type="number" size="xs"
+                                                backgroundColor="white" borderRadius={5} textAlign="center"
+                                                value={state.quantity} readOnly
+                                            />
+                                            <Button size="xs"><i className="fa fa-plus"
+                                                onClick={() => handleQuantity(+1)}></i></Button>
+                                        </Box>
                                         <HStack>
                                             <Button w="xs" size="sm" colorScheme="cyan" onClick={() => { handleBuyNow(state.id) }}>Buy Now</Button>
                                             <Button w="xs" size="sm" onClick={() => { handleCartAdd(state.id) }}>Add To Cart</Button>
                                         </HStack>
+                                        <Text mt={4} textAlign="justify">{state.description}</Text>
+
                                     </Stack>
                                 </GridItem>
                             </SimpleGrid>

@@ -124,10 +124,10 @@ function Store() {
                                 <Button mx="1" my="0.5" value="electronics" size="sm" onClick={handleFilter} backgroundColor="black" color="white">Electronics</Button>
                             </Box>
                             <Box as="hr" w="100%" mx="auto" mt={6} mb={8}/>
-                            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mt={4} p={2}>
+                            <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{base:1, md: 6}} mt={4} p={{base:0, md: 2}}>
                                 {filteredItems.map(item => {
                                     return (
-                                        <GridItem>
+                                        <GridItem >
                                             <StoreItem {...item} />
                                         </GridItem>   //使用props spreading，將item物件內的屬性全部傳遞給子元件StoreItem
                                     )
