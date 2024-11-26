@@ -1,4 +1,5 @@
 # fake store app
+### 歡迎試用這個Store App!
 ### demo: https://meteoroidalbert.github.io/fakeStore/#/
 ### 模擬功能: 購物車、登入/登出、註冊、結帳(超商地圖串接)
 ### 注意事項:
