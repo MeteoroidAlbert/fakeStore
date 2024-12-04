@@ -81,7 +81,8 @@ function Purchase () {
         createHiddenInput(form, "LogisticsType", "CVS");
         createHiddenInput(form, "LogisticsSubType", LogisticsSubType);
         createHiddenInput(form, "IsCollection", "Y");
-        createHiddenInput(form, "ServerReplyURL", "https://sever-0smf.onrender.com/reply");
+        // createHiddenInput(form, "ServerReplyURL", "https://sever-0smf.onrender.com/reply");
+        createHiddenInput(form, "ServerReplyURL", "https://news-weather-app-4.onrender.com/fakestore/reply");
         document.body.appendChild(form);
         form.submit();   
             

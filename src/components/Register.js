@@ -18,8 +18,8 @@ function Register() {
         
         axios({
             method: "post",
-            // url: 'http://localhost:5000/register',
-            url: "https://sever-0smf.onrender.com/register",
+            url: 'https://news-weather-app-4.onrender.com/fakestore/register',
+            // url: "https://sever-0smf.onrender.com/register",
             data: {
                 username: username,
                 password: password

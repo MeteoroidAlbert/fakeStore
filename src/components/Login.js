@@ -24,7 +24,8 @@ function Login() {
         setPassword("");
         axios({
             method: "post",
-            url: 'https://sever-0smf.onrender.com/login',
+            // url: 'https://sever-0smf.onrender.com/login',
+            url: "https://news-weather-app-4.onrender.com/fakestore/login",
             data: {
                 username: username,
                 password: password
