@@ -1,5 +1,5 @@
 import { Box, Button, Center, GridItem, Heading, Image, Input, Radio, RadioGroup, SimpleGrid, Spinner, Stack, Text, Textarea } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 
@@ -12,7 +12,6 @@ import { useAppContext } from "../App";
 function Purchase () {
     const {purchaseItems, setPurchaseItems, setShowing, setCartBtnShow, cartItems, setCartItems, loading, setLoading} = useAppContext();
     
-    const [totalPrice, setTotalPrice] = useState(0);
     const [selectedVal, setSelectedVal] = useState("");
     const [storeAddress, setStoreAddress] = useState("");
 
@@ -42,10 +41,10 @@ function Purchase () {
         
       }, []);
     
-    useEffect(() => {
-        const sum = purchaseItems.reduce( (acc, item) =>  acc + Number(item.totalPrice), 0).toFixed(2);
-        setTotalPrice(sum);
-    }, [purchaseItems]);
+    // useEffect(() => {
+    //     const sum = purchaseItems.reduce( (acc, item) =>  acc + Number(item.totalPrice), 0).toFixed(2);
+    //     setTotalPrice(sum);
+    // }, [purchaseItems]);
 
     useEffect(() => {
         const params = new URLSearchParams(location.search); //使用 new URLSearchParams()可以解析URL或特定字串，location.search則是代表當前URL的查詢參數
@@ -56,6 +55,11 @@ function Purchase () {
         }
     }, []);
 
+
+    const totalPrice = useMemo(() => {
+        const sum = purchaseItems.reduce( (acc, item) =>  acc + Number(item.totalPrice), 0).toFixed(2);
+        return sum;
+    }, [purchaseItems])
 
     const handleSelectedVal = (value) => {
         setSelectedVal(value);

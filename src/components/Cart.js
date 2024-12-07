@@ -1,12 +1,10 @@
 import { Box, Button, Center, GridItem, Heading, Image, Input, SimpleGrid, Slide, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../App";
 
 function Cart () {
     const {cartItems, setCartItems, showing, setShowing, setPurchaseItems} = useAppContext();
-
-    const [totalPrice, setTotalPrice] = useState(0);
     
     const navigate = useNavigate();
 
@@ -18,10 +16,11 @@ function Cart () {
         }
     },[])
 
-    useEffect(() => {
+    const totalPrice = useMemo(() => {
         const sum = cartItems.reduce( (acc, item) =>  acc + item.price * item.quantity, 0).toFixed(2);
-        setTotalPrice(sum);
-    }, [cartItems]);
+        return sum;
+    }, [cartItems])
+
 
 
     const handleCardClick = (item) => {
