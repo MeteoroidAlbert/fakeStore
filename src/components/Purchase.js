@@ -38,6 +38,16 @@ function Purchase () {
         
         setShowing(false);
         setCartBtnShow(false);
+
+        if ((new URLSearchParams(location.search).get("address"))) {
+            const address = new URLSearchParams(location.search).get("address");
+            setStoreAddress(address);
+            const storedCartData = JSON.parse(localStorage.getItem("storeCartData"));
+            if (storedCartData) {
+                setCartItems(storedCartData);
+            }
+
+        }
         
       }, []);
     
@@ -46,14 +56,14 @@ function Purchase () {
     //     setTotalPrice(sum);
     // }, [purchaseItems]);
 
-    useEffect(() => {
-        const params = new URLSearchParams(location.search); //使用 new URLSearchParams()可以解析URL或特定字串，location.search則是代表當前URL的查詢參數
-        const address = params.get("address"); // 獲取 URL 中的地址參數
-        if (address) {
-            setStoreAddress(address); // 更新 storeAddress 狀態
-        setCartItems(cartItems);  //debug: 由於異步處理，cartItems未及時更新時會造成cartItems與purchaseItem兩個Array內容完全依樣，造成後續handleCheckOut的處理會不正常清除購物車的內容
-        }
-    }, []);
+    // useEffect(() => {
+    //     const params = new URLSearchParams(location.search); //使用 new URLSearchParams()可以解析URL或特定字串，location.search則是代表當前URL的查詢參數
+    //     const address = params.get("address"); // 獲取 URL 中的地址參數
+    //     if (address) {
+    //         setStoreAddress(address); // 更新 storeAddress 狀態
+    //         setCartItems(cartItems);  //debug: 由於異步處理，cartItems未及時更新時會造成cartItems與purchaseItem兩個Array內容完全依樣，造成後續handleCheckOut的處理會不正常清除購物車的內容
+    //     }
+    // }, []);
 
 
     const totalPrice = useMemo(() => {
